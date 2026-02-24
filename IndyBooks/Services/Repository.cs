@@ -1,5 +1,6 @@
 using IndyBooks.Models;
 using IndyBooks.ViewModels;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace IndyBooks.Services;
 
@@ -15,7 +16,16 @@ public class Repository
     public decimal sale{ get; set; } = 0.5m; //percentage off for the sale
     public int SaleLimit { get;set; } = 90; // the item price above this amount will be on sale
     //TODO: complete the SaleResults property to show reduced-priced books
-    public IEnumerable<Book> SaleResults = new List<Book>(); 
+    
+    public IEnumerable<Book> SaleResults => _db.Books 
+                            .Where (b => b.Price > SaleLimit)
+                            .Select (b => new Book{
+                                Title =b.Title ,
+                                Author = b.Author,
+                                Price = b.Price*sale
+
+                            });
+
     //TODO: complete method to return search results based on the given SearchVM criteria
     public IEnumerable<Book> searchResults(SearchVM searchVM) {
             IQueryable<Book> foundBooks = _db.Books; // start with entire collection

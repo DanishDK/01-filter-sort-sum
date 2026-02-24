@@ -858,6 +858,22 @@ namespace IndyBooks.Services
                     Edition = "1",
                     Price = 30.00M,
                     Year = "1994"
+                },
+                new Book
+                {
+                    Title = "Red Rising",
+                    Author = "Pears Brown",
+                    Edition = "2",
+                    Price = 130.00M,
+                    Year = "2016"
+                },
+                new Book
+                {
+                    Title = "The Game Of Thrown",
+                    Author = "JJ Smith",
+                    Edition = "3",
+                    Price = 300.00M,
+                    Year = "2020"
                 }
             };
 
